@@ -1,9 +1,7 @@
 import React from "react";
 
-function cards() {
-  const items = ["1", "2", "3", "4", "5", "6", "7", "8"];
-
-  return <div>cards</div>;
+function Cards({ number }) {
+  return <div>{number}</div>;
 }
 
-export default cards;
+export default Cards;
