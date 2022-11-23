@@ -1,11 +1,7 @@
 import React from "react";
 import cardFront from "../assets/cardfront.png";
 
-function Card({ name, pokemon, id }) {
-  const cardClick = function (e) {
-    console.log(e.target.dataset.id);
-  };
-
+function Card({ name, pokemon, id, cardClick }) {
   return (
     // Card Container
     <button
