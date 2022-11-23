@@ -1,9 +1,9 @@
 import React from "react";
 import cardFront from "../assets/cardfront.png";
 
-function Cards({ eeveelution }) {
+function Card({ name, pokemon }) {
   const cardClick = function () {
-    console.log("click", +eeveelution);
+    console.log("click", +name);
   };
 
   return (
@@ -18,15 +18,15 @@ function Cards({ eeveelution }) {
       </div>
       {/* //Card */}
       <img
-        src={eeveelution.pokemon}
+        src={pokemon}
         alt="pokemon"
         width="200"
         height="20"
         className="border-2 w-14"
       />
-      <p className=" text-sm">{eeveelution.name}</p>
+      <p className=" text-sm">{name}</p>
     </button>
   );
 }
 
-export default Cards;
+export default Card;
