@@ -1,9 +1,9 @@
 import React from "react";
-import cardFront from "../assets/cardfront.webp";
+import cardFront from "../assets/cardfront.png";
 
-function Cards({ number }) {
+function Cards({ pokemon }) {
   const cardClick = function () {
-    console.log("click", +number);
+    console.log("click", +pokemon);
   };
 
   return (
@@ -14,10 +14,10 @@ function Cards({ number }) {
     >
       {/* front */}
       <div>
-        <img src={cardFront} alt="front" width="60" />
+        <img src={cardFront} alt="front" width="60" className="border-2" />
       </div>
       {/* //Card */}
-      <div className="w-[100px] h-[100px]">{number}</div>
+      <img src={pokemon} alt="pokemon" className="border-2" />
     </button>
   );
 }
