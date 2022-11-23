@@ -23,6 +23,8 @@ function App() {
   ];
   // set state for each card being generated
   const [cards, setCards] = useState(eeveelution);
+  const [firstPick, setFirstPick] = useState(null);
+  const [secondPick, setSecondPick] = useState(null);
 
   // double each card and shuffle order
   function resetGame() {
@@ -39,8 +41,17 @@ function App() {
 
   // onClick event when card is clicked (WIP)
   const cardClick = function (e) {
-    console.log(e.target.dataset.id);
+    if (firstPick === null) {
+      setFirstPick(e.target.dataset.id);
+      console.log("first pick: ", +e.target.dataset.id);
+    } else {
+      setSecondPick(e.target.dataset.id);
+      console.log("second pick: ", +e.target.dataset.id);
+      checkAnswer();
+    }
   };
+
+  function checkAnswer() {}
 
   return (
     <div className="grid place-items-center">
