@@ -11,7 +11,7 @@ import Cards from "./components/Cards";
 
 function App() {
   const { count, setCount } = useState(0);
-  const items = [
+  const eeveelution = [
     { name: "Espeon", pokemon: Espeon },
     { name: "Flareon", pokemon: Flareon },
     { name: "Glaceon", pokemon: Glaceon },
@@ -25,8 +25,8 @@ function App() {
   return (
     <div className="grid place-items-center">
       <div className="grid grid-cols-4">
-        {items.map(({ pokemon, name }) => (
-          <Cards key={name} pokemon={pokemon} />
+        {eeveelution.map((eeveelution) => (
+          <Cards eeveelution={eeveelution} />
         ))}
       </div>
     </div>
