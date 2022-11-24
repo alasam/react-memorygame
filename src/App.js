@@ -43,15 +43,27 @@ function App() {
   const cardClick = function (e) {
     if (firstPick === null) {
       setFirstPick(e.target.dataset.id);
-      console.log("first pick: ", +e.target.dataset.id);
+      console.log("first pick: ", +firstPick);
+      return firstPick;
     } else {
       setSecondPick(e.target.dataset.id);
-      console.log("second pick: ", +e.target.dataset.id);
-      checkAnswer();
+      console.log("second pick: ", +secondPick);
+      return secondPick;
+      // checkAnswer();
     }
   };
 
-  function checkAnswer() {}
+  function checkAnswer() {
+    if (firstPick === secondPick) {
+      console.log("correct!", +firstPick + secondPick);
+      setFirstPick(null);
+      setSecondPick(null);
+    } else {
+      console.log("Try again!, ", secondPick);
+      setFirstPick(null);
+      setSecondPick(null);
+    }
+  }
 
   return (
     <div className="grid place-items-center">
