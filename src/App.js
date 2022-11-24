@@ -40,17 +40,22 @@ function App() {
   }, []);
 
   // onClick event when card is clicked (WIP)
+  // const cardClick = function (e) {
+  //   if (firstPick === null) {
+  //     setFirstPick(e.target.dataset.id);
+  //     console.log("first pick: ", +firstPick);
+  //     return firstPick;
+  //   } else {
+  //     setSecondPick(e.target.dataset.id);
+  //     console.log("second pick: ", +secondPick);
+  //     return secondPick;
+  //     // checkAnswer();
+  //   }
+  // };
   const cardClick = function (e) {
-    if (firstPick === null) {
-      setFirstPick(e.target.dataset.id);
-      console.log("first pick: ", +firstPick);
-      return firstPick;
-    } else {
-      setSecondPick(e.target.dataset.id);
-      console.log("second pick: ", +secondPick);
-      return secondPick;
-      // checkAnswer();
-    }
+    firstPick
+      ? setSecondPick(e.target.dataset.id)
+      : setFirstPick(e.target.dataset.id);
   };
 
   function checkAnswer() {
@@ -59,11 +64,17 @@ function App() {
       setFirstPick(null);
       setSecondPick(null);
     } else {
-      console.log("Try again!, ", secondPick);
+      console.log("Try again!, ", +firstPick + secondPick);
       setFirstPick(null);
       setSecondPick(null);
     }
   }
+
+  useEffect(() => {
+    if (firstPick && secondPick) {
+      checkAnswer();
+    }
+  }, [firstPick, secondPick]);
 
   return (
     <div className="grid place-items-center">
