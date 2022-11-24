@@ -1,7 +1,7 @@
 import React from "react";
 import cardFront from "../assets/cardfront.png";
 
-function Card({ name, pokemon, id, cardClick }) {
+function Card({ name, pokemon, id, cardClick, disabled }) {
   return (
     // Card Container
     <button
@@ -10,7 +10,7 @@ function Card({ name, pokemon, id, cardClick }) {
       data-id={id}
     >
       {/* front */}
-      <div className="pointer-events-none">
+      <div className={`pointer-events-none ${disabled ? `disabled` }}>
         <img src={cardFront} alt="front" className="border-2 w-14" />
       </div>
       {/* //Card */}

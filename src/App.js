@@ -22,7 +22,8 @@ function App() {
     { id: 8, name: "Vaporeon", pokemon: Vaporeon },
   ];
   // set state for each card being generated
-  const [cards, setCards] = useState(eeveelution);
+  const [cards, setCards] = useState("");
+  const [disabled, setDisabled] = useState(false);
   const [firstPick, setFirstPick] = useState(null);
   const [secondPick, setSecondPick] = useState(null);
 
@@ -40,24 +41,13 @@ function App() {
   }, []);
 
   // onClick event when card is clicked (WIP)
-  // const cardClick = function (e) {
-  //   if (firstPick === null) {
-  //     setFirstPick(e.target.dataset.id);
-  //     console.log("first pick: ", +firstPick);
-  //     return firstPick;
-  //   } else {
-  //     setSecondPick(e.target.dataset.id);
-  //     console.log("second pick: ", +secondPick);
-  //     return secondPick;
-  //     // checkAnswer();
-  //   }
-  // };
   const cardClick = function (e) {
     firstPick
       ? setSecondPick(e.target.dataset.id)
       : setFirstPick(e.target.dataset.id);
   };
 
+  // checks if picks are matching or not, then clears picks
   function checkAnswer() {
     if (firstPick === secondPick) {
       console.log("correct!", +firstPick + secondPick);
@@ -70,6 +60,7 @@ function App() {
     }
   }
 
+  // useEffect to run checkAnswer when both first and second picks have a state
   useEffect(() => {
     if (firstPick && secondPick) {
       checkAnswer();
@@ -86,6 +77,7 @@ function App() {
             pokemon={pokemon}
             id={id}
             cardClick={cardClick}
+            setDisabled={disabled}
           />
         ))}
       </div>
