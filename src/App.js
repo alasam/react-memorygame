@@ -23,6 +23,7 @@ function App() {
   ];
   // set state for each card being generated
   const [cards, setCards] = useState("");
+  const [score, setScore] = useState(0);
   const [disabled, setDisabled] = useState(false);
   const [selected, setSelected] = useState(false);
   const [firstPick, setFirstPick] = useState(null);
@@ -34,6 +35,12 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, key: Math.random() }));
     setCards(shuffled);
+  }
+
+  // function to clear picks
+  function clearPicks() {
+    setFirstPick(null);
+    setSecondPick(null);
   }
 
   // call resetGame on load
@@ -52,12 +59,11 @@ function App() {
   function checkAnswer() {
     if (firstPick === secondPick) {
       console.log("correct!", +firstPick + secondPick);
-      setFirstPick(null);
-      setSecondPick(null);
+      clearPicks();
+      setScore(score + 1);
     } else {
       console.log("Try again!, ", +firstPick + secondPick);
-      setFirstPick(null);
-      setSecondPick(null);
+      clearPicks();
     }
   }
 
@@ -84,6 +90,7 @@ function App() {
           />
         ))}
       </div>
+      score: {score}
     </div>
   );
 }
