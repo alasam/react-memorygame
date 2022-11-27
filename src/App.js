@@ -24,6 +24,7 @@ function App() {
   // set state for each card being generated
   const [cards, setCards] = useState("");
   const [disabled, setDisabled] = useState(false);
+  const [selected, setSelected] = useState(false);
   const [firstPick, setFirstPick] = useState(null);
   const [secondPick, setSecondPick] = useState(null);
 
@@ -63,6 +64,7 @@ function App() {
   // useEffect to run checkAnswer when both first and second picks have a state
   useEffect(() => {
     if (firstPick && secondPick) {
+      setDisabled(true);
       checkAnswer();
     }
   }, [firstPick, secondPick]);
@@ -77,7 +79,8 @@ function App() {
             pokemon={pokemon}
             id={id}
             cardClick={cardClick}
-            setDisabled={disabled}
+            disabled={disabled}
+            selected={selected}
           />
         ))}
       </div>

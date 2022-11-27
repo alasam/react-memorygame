@@ -5,12 +5,15 @@ function Card({ name, pokemon, id, cardClick, disabled }) {
   return (
     // Card Container
     <button
-      className="grid w-[150px] h-[150px] place-items-center bg-gray-400 border-2 cursor-pointer"
+      className={`grid w-[150px] h-[150px] place-items-center  border-2 cursor-pointer ${
+        disabled ? "bg-gray-400" : "bg-blue-400"
+      }`}
       onClick={cardClick}
       data-id={id}
+      disabled={disabled ? true : false}
     >
       {/* front */}
-      <div className={`pointer-events-none ${disabled ? `disabled` }}>
+      <div className="pointer-events-none">
         <img src={cardFront} alt="front" className="border-2 w-14" />
       </div>
       {/* //Card */}
