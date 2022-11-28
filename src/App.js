@@ -88,15 +88,12 @@ function App() {
   return (
     <div className="grid place-items-center">
       <div className="grid grid-cols-4">
-        {Object.values(cards).map(({ key, name, pokemon, id, matched }) => (
+        {Object.values(cards).map((card) => (
           <Card
-            key={key}
-            name={name}
-            pokemon={pokemon}
-            id={id}
+            key={card.key}
+            card={card}
             cardClick={cardClick}
             disabled={disabled}
-            matched={matched}
           />
         ))}
       </div>

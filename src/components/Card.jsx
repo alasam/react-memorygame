@@ -1,7 +1,7 @@
 import React from "react";
 import cardFront from "../assets/cardfront.png";
 
-function Card({ name, pokemon, id, cardClick, disabled, active }) {
+function Card({ card, cardClick, disabled }) {
   return (
     // Card Container
     <button
@@ -9,9 +9,9 @@ function Card({ name, pokemon, id, cardClick, disabled, active }) {
         disabled ? "bg-gray-400" : "bg-blue-400"
       }`}
       onClick={cardClick}
-      data-id={id}
+      data-id={card.id}
       disabled={disabled ? true : false}
-      active={active}
+      active={card.active}
     >
       {/* front */}
       <div className="pointer-events-none">
@@ -19,13 +19,13 @@ function Card({ name, pokemon, id, cardClick, disabled, active }) {
       </div>
       {/* //Card */}
       <img
-        src={pokemon}
+        src={card.pokemon}
         alt="pokemon"
         width="200"
         height="20"
         className="border-2 w-14 pointer-events-none"
       />
-      <p className=" text-sm">{name}</p>
+      <p className=" text-sm">{card.name}</p>
     </button>
   );
 }
