@@ -24,6 +24,7 @@ function App() {
   // set state for each card being generated
   const [cards, setCards] = useState({});
   const [score, setScore] = useState(0);
+  const [turn, setTurn] = useState(0);
   const [disabled, setDisabled] = useState(false);
   const [selected, setSelected] = useState(false);
   const [firstPick, setFirstPick] = useState(null);
@@ -52,15 +53,15 @@ function App() {
 
   // onClick event when card is clicked
   const cardClick = function (e) {
-    if (firstPick) {
-      setSecondPick(e.target.dataset.id);
-    } else {
-      setFirstPick(e.target.dataset.id);
-    }
+    // if (firstPick) {
+    //   setSecondPick(e.target.dataset.id);
+    // } else {
+    //   setFirstPick(e.target.dataset.id);
+    // }
 
-    // firstPick
-    //   ? setSecondPick(e.target.dataset.id)
-    //   : setFirstPick(e.target.dataset.id);
+    firstPick
+      ? setSecondPick(e.target.dataset.id)
+      : setFirstPick(e.target.dataset.id);
   };
 
   // onClick event for reset button
@@ -92,10 +93,16 @@ function App() {
         });
       });
       setScore(score + 1);
+      setTurn(turn + 1);
     } else {
       console.log("Try again!, ", +firstPick + secondPick);
+      setTurn(turn + 1);
     }
     clearPicks();
+    if (score >= 7) {
+      console.log("congrats you win!");
+      resetClick();
+    }
   }
 
   // useEffect to run checkAnswer when both first and second picks have a state
@@ -119,6 +126,8 @@ function App() {
         ))}
       </div>
       score: {score}
+      <br />
+      turn: {turn}
       <button onClick={resetClick}>Reset Game</button>
     </div>
   );
