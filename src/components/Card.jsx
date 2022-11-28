@@ -11,6 +11,7 @@ function Card({ name, pokemon, id, cardClick, disabled, active }) {
       onClick={cardClick}
       data-id={id}
       disabled={disabled ? true : false}
+      active={active}
     >
       {/* front */}
       <div className="pointer-events-none">

@@ -12,23 +12,23 @@ import Card from "./components/Card";
 function App() {
   // Array with card data
   const eeveelution = [
-    { id: 1, name: "Espeon", pokemon: Espeon, active: false },
-    { id: 2, name: "Flareon", pokemon: Flareon, active: false },
-    { id: 3, name: "Glaceon", pokemon: Glaceon, active: false },
-    { id: 4, name: "Jolteon", pokemon: Jolteon, active: false },
-    { id: 5, name: "Leafeon", pokemon: Leafeon, active: false },
-    { id: 6, name: "Sylveon", pokemon: Sylveon, active: false },
-    { id: 7, name: "Umbreon", pokemon: Umbreon, active: false },
-    { id: 8, name: "Vaporeon", pokemon: Vaporeon, active: false },
+    { id: 1, name: "Espeon", pokemon: Espeon, matched: false },
+    { id: 2, name: "Flareon", pokemon: Flareon, matched: false },
+    { id: 3, name: "Glaceon", pokemon: Glaceon, matched: false },
+    { id: 4, name: "Jolteon", pokemon: Jolteon, matched: false },
+    { id: 5, name: "Leafeon", pokemon: Leafeon, matched: false },
+    { id: 6, name: "Sylveon", pokemon: Sylveon, matched: false },
+    { id: 7, name: "Umbreon", pokemon: Umbreon, matched: false },
+    { id: 8, name: "Vaporeon", pokemon: Vaporeon, matched: false },
   ];
   // set state for each card being generated
-  const [cards, setCards] = useState("");
+  const [cards, setCards] = useState({});
   const [score, setScore] = useState(0);
   const [disabled, setDisabled] = useState(false);
   const [selected, setSelected] = useState(false);
   const [firstPick, setFirstPick] = useState(null);
   const [secondPick, setSecondPick] = useState(null);
-  const [moves, setMoves] = useState[0];
+  const [moves, setMoves] = useState(0);
 
   // double each card and shuffle order
   function resetGame() {
@@ -42,6 +42,7 @@ function App() {
   function clearPicks() {
     setFirstPick(null);
     setSecondPick(null);
+    setDisabled(false);
   }
 
   // call resetGame on load
@@ -61,18 +62,19 @@ function App() {
     if (firstPick === secondPick) {
       console.log("correct!", +firstPick + secondPick);
       setCards((prev) => {
-        return prev.map(
-          (card =>
-            card.id === firstPick
-        )
+        return prev.map((card) => {
+          if (card.id == firstPick) {
+            return { ...card, matched: true };
+          } else {
+            return card;
+          }
+        });
       });
-      clearPicks();
       setScore(score + 1);
     } else {
       console.log("Try again!, ", +firstPick + secondPick);
-      clearPicks();
-      setDisabled(false);
     }
+    clearPicks();
   }
 
   // useEffect to run checkAnswer when both first and second picks have a state
@@ -86,7 +88,7 @@ function App() {
   return (
     <div className="grid place-items-center">
       <div className="grid grid-cols-4">
-        {Object.values(cards).map(({ key, name, pokemon, id }) => (
+        {Object.values(cards).map(({ key, name, pokemon, id, matched }) => (
           <Card
             key={key}
             name={name}
@@ -94,7 +96,7 @@ function App() {
             id={id}
             cardClick={cardClick}
             disabled={disabled}
-            selected={selected}
+            matched={matched}
           />
         ))}
       </div>
