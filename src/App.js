@@ -50,11 +50,25 @@ function App() {
     resetGame();
   }, []);
 
-  // onClick event when card is clicked (WIP)
+  // onClick event when card is clicked
   const cardClick = function (e) {
     firstPick
       ? setSecondPick(e.target.dataset.id)
       : setFirstPick(e.target.dataset.id);
+  };
+
+  // onClick event for reset button
+  const resetClick = function () {
+    setCards((prev) => {
+      return prev.map((card) => {
+        if (card.matched === true) {
+          return { ...card, matched: false };
+        } else {
+          return card;
+        }
+      });
+    });
+    setScore(0);
   };
 
   // checks if picks are matching or not, then clears picks
@@ -98,6 +112,7 @@ function App() {
         ))}
       </div>
       score: {score}
+      <button onClick={resetClick}>Reset Game</button>
     </div>
   );
 }
