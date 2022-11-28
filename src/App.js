@@ -12,14 +12,14 @@ import Card from "./components/Card";
 function App() {
   // Array with card data
   const eeveelution = [
-    { id: 1, name: "Espeon", pokemon: Espeon },
-    { id: 2, name: "Flareon", pokemon: Flareon },
-    { id: 3, name: "Glaceon", pokemon: Glaceon },
-    { id: 4, name: "Jolteon", pokemon: Jolteon },
-    { id: 5, name: "Leafeon", pokemon: Leafeon },
-    { id: 6, name: "Sylveon", pokemon: Sylveon },
-    { id: 7, name: "Umbreon", pokemon: Umbreon },
-    { id: 8, name: "Vaporeon", pokemon: Vaporeon },
+    { id: 1, name: "Espeon", pokemon: Espeon, active: false },
+    { id: 2, name: "Flareon", pokemon: Flareon, active: false },
+    { id: 3, name: "Glaceon", pokemon: Glaceon, active: false },
+    { id: 4, name: "Jolteon", pokemon: Jolteon, active: false },
+    { id: 5, name: "Leafeon", pokemon: Leafeon, active: false },
+    { id: 6, name: "Sylveon", pokemon: Sylveon, active: false },
+    { id: 7, name: "Umbreon", pokemon: Umbreon, active: false },
+    { id: 8, name: "Vaporeon", pokemon: Vaporeon, active: false },
   ];
   // set state for each card being generated
   const [cards, setCards] = useState("");
@@ -28,6 +28,7 @@ function App() {
   const [selected, setSelected] = useState(false);
   const [firstPick, setFirstPick] = useState(null);
   const [secondPick, setSecondPick] = useState(null);
+  const [moves, setMoves] = useState[0];
 
   // double each card and shuffle order
   function resetGame() {
@@ -59,11 +60,18 @@ function App() {
   function checkAnswer() {
     if (firstPick === secondPick) {
       console.log("correct!", +firstPick + secondPick);
+      setCards((prev) => {
+        return prev.map(
+          (card =>
+            card.id === firstPick
+        )
+      });
       clearPicks();
       setScore(score + 1);
     } else {
       console.log("Try again!, ", +firstPick + secondPick);
       clearPicks();
+      setDisabled(false);
     }
   }
 

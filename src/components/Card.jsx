@@ -1,7 +1,7 @@
 import React from "react";
 import cardFront from "../assets/cardfront.png";
 
-function Card({ name, pokemon, id, cardClick, disabled }) {
+function Card({ name, pokemon, id, cardClick, disabled, active }) {
   return (
     // Card Container
     <button
