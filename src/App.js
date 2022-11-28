@@ -52,9 +52,15 @@ function App() {
 
   // onClick event when card is clicked
   const cardClick = function (e) {
-    firstPick
-      ? setSecondPick(e.target.dataset.id)
-      : setFirstPick(e.target.dataset.id);
+    if (firstPick) {
+      setSecondPick(e.target.dataset.id);
+    } else {
+      setFirstPick(e.target.dataset.id);
+    }
+
+    // firstPick
+    //   ? setSecondPick(e.target.dataset.id)
+    //   : setFirstPick(e.target.dataset.id);
   };
 
   // onClick event for reset button
@@ -69,6 +75,7 @@ function App() {
       });
     });
     setScore(0);
+    resetGame();
   };
 
   // checks if picks are matching or not, then clears picks
