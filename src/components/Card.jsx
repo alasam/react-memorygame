@@ -5,7 +5,7 @@ function Card({ card, cardClick, disabled }) {
   return (
     // Card Container
     <button
-      className={`grid w-[150px] h-[150px] place-items-center  border-2 cursor-pointer ${
+      className={`flex w-[150px] h-[150px] justify-between cursor-pointer ${
         card.matched || disabled
           ? "bg-gray-400 pointer-events-none"
           : "bg-blue-400"
@@ -16,17 +16,15 @@ function Card({ card, cardClick, disabled }) {
     >
       {/* front */}
       <div className="pointer-events-none">
-        <img src={cardFront} alt="front" className="border-2 w-14" />
+        <img src={cardFront} alt="front" className="absolute w-[140px] " />
+
+        {/* //Card */}
+        <img
+          src={card.pokemon}
+          alt="pokemon"
+          className="absolute w-[140px] pointer-events-none"
+        />
       </div>
-      {/* //Card */}
-      <img
-        src={card.pokemon}
-        alt="pokemon"
-        width="200"
-        height="20"
-        className="border-2 w-14 pointer-events-none"
-      />
-      <p className=" text-sm">{card.name}</p>
     </button>
   );
 }

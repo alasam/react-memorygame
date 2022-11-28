@@ -76,6 +76,7 @@ function App() {
       });
     });
     setScore(0);
+    setTurn(0);
     resetGame();
   };
 
