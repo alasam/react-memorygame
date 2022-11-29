@@ -25,6 +25,7 @@ function App() {
   const [cards, setCards] = useState({});
   const [score, setScore] = useState(0);
   const [turn, setTurn] = useState(0);
+  const [index, setIndex] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [selected, setSelected] = useState(false);
   const [firstPick, setFirstPick] = useState(null);
@@ -51,17 +52,22 @@ function App() {
     resetGame();
   }, []);
 
-  // onClick event when card is clicked
+  // onClick event when card is clicked, checks to see if firstPick is present, then checks to see if index is the same (clicking on the same card twice)
   const cardClick = function (e) {
-    // if (firstPick) {
-    //   setSecondPick(e.target.dataset.id);
-    // } else {
-    //   setFirstPick(e.target.dataset.id);
-    // }
+    if (firstPick) {
+      if (index === e.target.dataset.index) {
+        return;
+      } else {
+        setSecondPick(e.target.dataset.id);
+      }
+    } else {
+      setIndex(e.target.dataset.index);
+      setFirstPick(e.target.dataset.id);
+    }
 
-    firstPick
-      ? setSecondPick(e.target.dataset.id)
-      : setFirstPick(e.target.dataset.id);
+    // firstPick
+    //   ? setSecondPick(e.target.dataset.id)
+    //   : setFirstPick(e.target.dataset.id);
   };
 
   // onClick event for reset button
@@ -117,10 +123,11 @@ function App() {
   return (
     <div className="grid place-items-center">
       <div className="grid grid-cols-4">
-        {Object.values(cards).map((card) => (
+        {Object.values(cards).map((card, index) => (
           <Card
             key={card.key}
             card={card}
+            index={index}
             cardClick={cardClick}
             disabled={disabled}
           />

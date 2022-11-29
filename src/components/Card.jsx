@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import cardFront from "../assets/cardfront.png";
 
-function Card({ card, cardClick, disabled }) {
+function Card({ card, cardClick, disabled, index }) {
   return (
     // Card Container
     <button
@@ -13,6 +13,7 @@ function Card({ card, cardClick, disabled }) {
       onClick={cardClick}
       data-id={card.id}
       disabled={disabled ? true : false}
+      data-index={index}
     >
       {/* front */}
       <div className="pointer-events-none">
